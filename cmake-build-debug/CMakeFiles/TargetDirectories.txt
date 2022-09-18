@@ -1,0 +1,6 @@
+D:/StaticLibs/FileFinder/cmake-build-debug/CMakeFiles/FileFinder.dir
+D:/StaticLibs/FileFinder/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/StaticLibs/FileFinder/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/StaticLibs/FileFinder/cmake-build-debug/OneTask/CMakeFiles/OneTask.dir
+D:/StaticLibs/FileFinder/cmake-build-debug/OneTask/CMakeFiles/edit_cache.dir
+D:/StaticLibs/FileFinder/cmake-build-debug/OneTask/CMakeFiles/rebuild_cache.dir
