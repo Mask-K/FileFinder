@@ -1,6 +1,6 @@
-#ifndef FILEFINDER_LIBRARY_H
-#define FILEFINDER_LIBRARY_H
+
 #pragma once
+#include "Core.h"
 #include <string>
 #include <vector>
 #include <thread>
@@ -29,7 +29,3 @@ private:
     std::mutex found_mutex;
 };
 
-
-
-
-#endif //FILEFINDER_LIBRARY_H
