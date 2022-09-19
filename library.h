@@ -1,10 +1,13 @@
 #ifndef FILEFINDER_LIBRARY_H
 #define FILEFINDER_LIBRARY_H
+#pragma once
 #include <string>
 #include <vector>
 #include <thread>
 #include <mutex>
 #include <atomic>
+#include "ThreadPool/ThreadPool.h"
+
 
 class Finder{
 public:
@@ -17,6 +20,8 @@ public:
 private:
     void divide(const std::string& path);
     void process(int i);
+
+    thread_pool pool;
     std::vector<std::string> subdirs;
     std::vector<std::thread> threads;
     std::atomic<bool> found = false;
