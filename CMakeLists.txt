@@ -4,7 +4,7 @@ project(FileFinder)
 set(CMAKE_CXX_STANDARD 20)
 
 
-add_library(FileFinder STATIC library.cpp library.h)
+add_library(FileFinder STATIC library.cpp library.h Core.h)
 
 add_subdirectory(ThreadPool)
 add_subdirectory(OneTask)

@@ -1,11 +1,9 @@
 //
 // Created by Maksym on 18.09.2022.
 //
-
-#ifndef FILEFINDER_THREADPOOL_H
-#define FILEFINDER_THREADPOOL_H
 #pragma once
-#include "../library.h"
+#include "../Core.h"
+
 #include <atomic>
 #include <condition_variable>
 #include <mutex>
@@ -85,5 +83,3 @@ private:
 
     std::vector< std::thread > m_threads;
 };
-
-#endif //FILEFINDER_THREADPOOL_H
