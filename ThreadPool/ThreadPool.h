@@ -15,8 +15,9 @@
 class thread_pool
 {
 public:
-    thread_pool( )
+    thread_pool(int size)
     {
+        num_threads = size;
         //runner = std::thread(&thread_pool::run, this);
     }
 
@@ -30,16 +31,12 @@ public:
 
     void stop( );
 
-    void push( std::function< void(Finder*, int) > function );
+    void push( std::function< void(int) > function );
 
     void wait( );
 
-    void set_num_threads(int a){
-        num_threads = a;
-    }
-
 private:
-    bool fetch_task( std::function<void(Finder*, int)>& function )
+    bool fetch_task( std::function<void(int)>& function )
     {
         if (!m_task_queue.empty())
         {
@@ -76,9 +73,9 @@ private:
 private:
     std::thread runner;
     std::atomic_bool m_running = false;
-    int num_threads = 8;
+    int num_threads;
     std::mutex m_task_queue_lock;
-    std::queue< std::function<void(Finder*, int)> > m_task_queue;
+    std::queue< std::function<void(int)> > m_task_queue;
     std::condition_variable m_task_ready;
 
     std::vector< std::thread > m_threads;

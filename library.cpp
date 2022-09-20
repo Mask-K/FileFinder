@@ -1,6 +1,7 @@
 #include "library.h"
 #include <iostream>
 #include <filesystem>
+#include <functional>
 
 namespace fs = std::filesystem;
 
@@ -15,8 +16,9 @@ void Finder::process(int i){
     }
         try {
             for (const auto &entry: fs::recursive_directory_iterator(subdirs[i])) {
-                if(found)
+                if(found){
                     return;
+                }
                 std::string t = entry.path().filename().string();
                 if (t == to_find) {
                     found = true;
@@ -24,7 +26,6 @@ void Finder::process(int i){
                     return;
                 }
             }
-
         }
         catch (...){
             //std::cout << "exception occured on " << subdirs[i] << std::endl;
@@ -51,14 +52,18 @@ void Finder::FindFile(const std::string &path) {
     if(found)
         return;
 
+    int amount = 8;
     if(subdirs.size() <= 8)
-        pool.set_num_threads(subdirs.size());
+        amount = subdirs.size();
 
+    thread_pool pool(amount);
 
     for(int i = 0; i < subdirs.size(); ++i)
-        pool.push(std::function<void(int)>(process, i,  this))
-//
-//    if(!found)
-//        std::cout << "File doesn't exist\n";
+        pool.push(std::function<void(int)>(&Finder::process,  i, this));
+
+    pool.run();
+
+    if(!found)
+        std::cout << "File doesn't exist\n";
 
 }
